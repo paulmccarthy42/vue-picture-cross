@@ -13,8 +13,18 @@ export default {
   data () {
     return {
       msg: 'Component specific header',
-      test: [1, 2, 3, 4]
+      test: {}
     }
+  },
+  mounted: function () {
+    var that = this
+    axios.get('http://localhost:3000/v1/boards/1')
+      .then(function (response) {
+        console.log(response.data)
+        console.log(that)
+        that.test = response.data
+      })
+      .catch(function (error) { console.log(error) })
   }
 }
 </script>
