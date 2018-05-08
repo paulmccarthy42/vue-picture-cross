@@ -1,8 +1,9 @@
 <template>
   <div class="hello">
     <h1>{{ msg }}</h1>
+    <h2>{{size}} puzzle, {{completed ? 'previously' : 'never'}} completed</h2>
     <ul>
-      <li v-for="x in test">{{x}}</li>
+      <li v-for="x in cells">{{x}}</li>
     </ul>
   </div>
 </template>
@@ -13,16 +14,18 @@ export default {
   data () {
     return {
       msg: 'Component specific header',
-      test: {}
+      cells: [],
+      size: null,
+      completed: null
     }
   },
   mounted: function () {
     var that = this
     axios.get('http://localhost:3000/v1/boards/1')
       .then(function (response) {
-        console.log(response.data)
-        console.log(that)
-        that.test = response.data
+        that.cells = response.data.cells
+        that.size = response.data.size
+        that.completed = response.data.completed
       })
       .catch(function (error) { console.log(error) })
   }
