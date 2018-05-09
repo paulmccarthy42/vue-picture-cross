@@ -2,9 +2,12 @@
   <div class="hello">
     <h1>{{ msg }}</h1>
     <h2>{{size}} puzzle, {{completed ? 'previously' : 'never'}} completed</h2>
-    <ul>
-      <li v-for="x in cells">{{x}}</li>
-    </ul>
+    <div class='puzzle'>
+      <div class='row' v-for="row in cells">
+        <div class="box" v-for="cell in row">x</div>
+        <br></br>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -26,6 +29,7 @@ export default {
         that.cells = response.data.cells
         that.size = response.data.size
         that.completed = response.data.completed
+        console.log(that.cells)
       })
       .catch(function (error) { console.log(error) })
   }
@@ -49,4 +53,22 @@ li {
 a {
   color: #42b983;
 }
+
+.box {
+  border: 1px black solid;
+  height: 30px;
+  width: 30px;
+  float: left;
+}
+
+.row {
+  min-width: 330px;
+  height: 32px;
+}
+
+.puzzle {
+  padding-left: 33%;
+  padding-right: 33%;
+}
+
 </style>
