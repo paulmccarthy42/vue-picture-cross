@@ -116,6 +116,11 @@ a {
   color: grey;
   padding-right: 5px;
   border-top: 1px grey solid;
+  border-bottom: 1px grey solid;
+  height: 30px;
+}
+.count.completed {
+  background-color: lightgrey;
 }
 
 </style>
