@@ -4,7 +4,9 @@
     <h2>{{size}} puzzle, {{completed ? 'previously' : 'never'}} completed</h2>
     <div class='puzzle'>
       <div class='row' v-for="row in cells">
-        <div class="box" v-for="cell in row">x</div>
+        <div class="box" v-for="cell in row" v-bind:class = "{ shaded : cell.shownFilled }" v-on:click="toggleDisplay(cell)">
+          
+        </div>
         <br></br>
       </div>
     </div>
@@ -32,6 +34,17 @@ export default {
         console.log(that.cells)
       })
       .catch(function (error) { console.log(error) })
+  },
+  methods: {
+    toggleDisplay: function (cell) {
+      this.cells.forEach(function (row) {
+        row.forEach(function (vueCell) {
+          if (vueCell === cell) {
+            vueCell.shownFilled = !vueCell.shownFilled
+          }
+        })
+      })
+    }
   }
 }
 </script>
@@ -69,6 +82,10 @@ a {
 .puzzle {
   padding-left: 33%;
   padding-right: 33%;
+}
+
+.shaded {
+  background-color: black;
 }
 
 </style>
