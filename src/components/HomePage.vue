@@ -4,10 +4,12 @@
     <h2>{{size}} puzzle, {{completed ? 'previously' : 'never'}} completed</h2>
     <div class='puzzle'>
       <div class='row' v-for="row in cells">
-        <div class="count">{{countFilled(row)}}</div>
+        <div class="count">
+          {{countFilled(row)}}
+        </div>
         <div class="box" 
           v-for="cell in row" 
-          v-bind:class = "{ shaded : cell.shownFilled }" 
+          v-bind:class = "{ shaded : cell.shownFilled, filled : cell.filled }" 
           v-on:click="toggleDisplay(cell)">
         </div>
         <br></br>
@@ -57,7 +59,13 @@ export default {
           count.push(0)
         }
       })
-      return count.filter(function (num) { return num !== 0 })
+      var cleanCount = count.filter(function (num) { return num !== 0 })
+      if (cleanCount.length > 0) {
+        console.log(cleanCount)
+        return cleanCount.join(' ')
+      } else {
+        return 0
+      }
     }
   }
 }
@@ -95,11 +103,19 @@ a {
   padding-left: 33%;
   padding-right: 33%;
 }
-.shaded {
+.shaded.filled {
   background-color: black;
 }
+.shaded {
+  background-color: red;
+}
 .count {
+  min-width: 100px;
   float: left;
+  text-align: right;
+  color: grey;
+  padding-right: 5px;
+  border-top: 1px grey solid;
 }
 
 </style>
