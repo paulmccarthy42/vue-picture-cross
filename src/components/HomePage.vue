@@ -49,13 +49,15 @@ export default {
       })
     },
     countFilled: function (row) {
-      var count = 0
+      var count = [0]
       row.forEach(function (cell) {
         if (cell.filled) {
-          count += 1
+          count[count.length - 1] += 1
+        } else {
+          count.push(0)
         }
       })
-      return count
+      return count.filter(function (num) { return num !== 0 })
     }
   }
 }
