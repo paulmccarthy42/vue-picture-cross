@@ -51,7 +51,7 @@ export default {
     countFilled: function (row) {
       var count = 0
       row.forEach(function (cell) {
-        if (cell.shownFilled) {
+        if (cell.filled) {
           count += 1
         }
       })
