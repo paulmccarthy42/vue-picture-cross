@@ -5,10 +5,8 @@
     <div class='puzzle'>
       <div class='counts-top'></div>
       <div class='counts-left'>
-        <div v-for='x in Array.apply(null, Array(size)).map(function (_, i) {return i;})' class='marginless'>
-          <div class="count">
+        <div v-for='x in Array.apply(null, Array(size)).map(function (_, i) {return i;})' class='count'>
             {{countFilled(row(x))}}
-          </div>
           <br>
           
         </div> 
@@ -127,9 +125,6 @@ a {
 }
 .counts-left {
   float: left;
-}
-.marginless {
-  height: 32px;
 }
 .count {
   min-width: 100px;
