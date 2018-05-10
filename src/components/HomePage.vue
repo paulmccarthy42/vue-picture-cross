@@ -3,8 +3,11 @@
     <h1>{{ msg }}</h1>
     <h2>{{size}} by {{size}} puzzle, {{completed ? 'previously' : 'never'}} completed</h2>
     <div class='puzzle'>
-      <div v-on:click='test()'>yo</div>
-      <div v-for="cell in cells" class='box'>
+      <div 
+        class='box'
+        v-for="cell in cells" 
+        v-bind:class = "{ shaded : cell.shownFilled, filled : cell.filled }" 
+        v-on:click="toggleDisplay(cell)">
         <!-- <div class="count">
           {{countFilled(row)}}
         </div>
@@ -43,12 +46,10 @@ export default {
   },
   methods: {
     toggleDisplay: function (cell) {
-      this.cells.forEach(function (row) {
-        row.forEach(function (vueCell) {
-          if (vueCell === cell) {
-            vueCell.shownFilled = !vueCell.shownFilled
-          }
-        })
+      this.cells.forEach(function (vueCell) {
+        if (vueCell === cell) {
+          vueCell.shownFilled = !vueCell.shownFilled
+        }
       })
     },
     countFilled: function (row) {
