@@ -3,12 +3,14 @@
     <h1>{{ msg }}</h1>
     <h2>{{size}} by {{size}} puzzle, {{completed ? 'previously' : 'never'}} completed</h2>
     <div class='puzzle'>
-      <div class='counts-top'></div>
+      <div class='counts-top'>
+        <div v-for='x in Array.apply(null, Array(size)).map(function (_, i) {return i;})' class='count'>
+          {{countFilled(column(x))}}
+        </div> 
+      </div>
       <div class='counts-left'>
         <div v-for='x in Array.apply(null, Array(size)).map(function (_, i) {return i;})' class='count'>
-            {{countFilled(row(x))}}
-          <br>
-          
+          {{countFilled(row(x))}}
         </div> 
       </div>
       <div class="grid">
