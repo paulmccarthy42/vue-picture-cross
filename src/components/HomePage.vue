@@ -10,13 +10,7 @@
         v-on:click="toggleDisplay(cell)">
         <!-- <div class="count">
           {{countFilled(row)}}
-        </div>
-        <div class="box" 
-          v-for="cell in row" 
-          v-bind:class = "{ shaded : cell.shownFilled, filled : cell.filled }" 
-          v-on:click="toggleDisplay(cell)">
-        </div>
-        <br></br> -->
+        </div>-->
       </div>
     </div> 
   </div>
