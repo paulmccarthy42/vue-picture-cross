@@ -8,8 +8,8 @@
         v-bind:class = "{ box : true, shaded : cell.shownFilled, filled : cell.filled }" 
         v-on:click="toggleDisplay(cell)">
         <!-- <div class="count">
-          {{countFilled(row)}}
-        </div>-->
+          {{countFilled(row(0))}}
+        </div> -->
       </div>
     </div> 
   </div>
@@ -45,9 +45,9 @@ export default {
         }
       })
     },
-    countFilled: function (row) {
+    countFilled: function (groupOfCells) {
       var count = [0]
-      row.forEach(function (cell) {
+      groupOfCells.forEach(function (cell) {
         if (cell.filled) {
           count[count.length - 1] += 1
         } else {
@@ -106,6 +106,7 @@ a {
 .puzzle {
   padding-left: 33%;
   padding-right: 33%;
+  width: 320px
 }
 .shaded.filled {
   background-color: black;
