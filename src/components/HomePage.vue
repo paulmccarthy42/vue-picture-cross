@@ -5,11 +5,13 @@
     <div class='puzzle'>
       <div class='counts-top'></div>
       <div class='counts-left'>
-        <!-- <div v-for='x in Array.apply(null, Array(size)).map(function (_, i) {return i;})'>
-          <div class="count"></div>
+        <div v-for='x in Array.apply(null, Array(size)).map(function (_, i) {return i;})' class='marginless'>
+          <div class="count">
+            {{countFilled(row(x))}}
+          </div>
           <br>
           
-        </div> -->
+        </div> 
       </div>
       <div class="grid">
         <div 
@@ -115,7 +117,7 @@ a {
   padding-right: 33%;
 }
 .grid {
-  width: 320px;
+  width: 450px;
 }
 .shaded.filled {
   background-color: black;
@@ -123,9 +125,14 @@ a {
 .shaded {
   background-color: red;
 }
+.counts-left {
+  float: left;
+}
+.marginless {
+  height: 32px;
+}
 .count {
   min-width: 100px;
-  float: left;
   text-align: right;
   color: grey;
   padding-right: 5px;
