@@ -3,14 +3,19 @@
     <h1>{{ msg }}</h1>
     <h2>{{size}} by {{size}} puzzle, {{completed ? 'previously' : 'never'}} completed</h2>
     <div class='puzzle'>
-      <div class='counts-top'>
-        <div v-for='x in Array.apply(null, Array(size)).map(function (_, i) {return i;})' class='count'>
-          {{countFilled(column(x))}}
+      <div class="top">
+        <div class='counts-top'>
+          <div v-for='x in Array.apply(null, Array(size)).map(function (_, i) {return i;})' class='count'>
+            {{countFilled(column(x))}}
+          </div>
+          <br>
         </div> 
       </div>
+      <div class="body">
       <div class='counts-left'>
         <div v-for='x in Array.apply(null, Array(size)).map(function (_, i) {return i;})' class='count'>
           {{countFilled(row(x))}}
+          </div>
         </div> 
       </div>
       <div class="grid">
@@ -128,17 +133,34 @@ a {
 .counts-left {
   float: left;
 }
+.counts-top {
+  /*float: none;*/
+  /*padding-left: 100px;*/
+}
 .count {
-  min-width: 100px;
   text-align: right;
   color: grey;
-  padding-right: 5px;
+}
+.counts-left .count {
+  height: 30px;
   border-top: 1px grey solid;
   border-bottom: 1px grey solid;
-  height: 30px;
+  min-width: 100px;
+  padding-right: 5px;
+}
+.counts-top .count {
+  width: 32px;
+  padding-bottom: 5px;
+  height: 50px;
+  float: left;
+  border-left: 1px grey solid;
+  border-right: 1px grey solid;
 }
 .count.completed {
   background-color: lightgrey;
+}
+.top {
+  width: 100%;
 }
 
 </style>
