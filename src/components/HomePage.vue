@@ -3,13 +3,20 @@
     <h1>{{ msg }}</h1>
     <h2>{{size}} by {{size}} puzzle, {{completed ? 'previously' : 'never'}} completed</h2>
     <div class='puzzle'>
-      <div 
-        v-for="cell in cells" 
-        v-bind:class = "{ box : true, shaded : cell.shownFilled, filled : cell.filled }" 
-        v-on:click="toggleDisplay(cell)">
-        <!-- <div class="count">
-          {{countFilled(row(0))}}
+      <div class='counts-top'></div>
+      <div class='counts-left'>
+        <!-- <div v-for='x in Array.apply(null, Array(size)).map(function (_, i) {return i;})'>
+          <div class="count"></div>
+          <br>
+          
         </div> -->
+      </div>
+      <div class="grid">
+        <div 
+          v-for="cell in cells" 
+          v-bind:class = "{ box : true, shaded : cell.shownFilled, filled : cell.filled }" 
+          v-on:click="toggleDisplay(cell)">
+        </div>
       </div>
     </div> 
   </div>
@@ -106,7 +113,9 @@ a {
 .puzzle {
   padding-left: 33%;
   padding-right: 33%;
-  width: 320px
+}
+.grid {
+  width: 320px;
 }
 .shaded.filled {
   background-color: black;
