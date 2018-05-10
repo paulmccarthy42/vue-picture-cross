@@ -4,9 +4,8 @@
     <h2>{{size}} by {{size}} puzzle, {{completed ? 'previously' : 'never'}} completed</h2>
     <div class='puzzle'>
       <div 
-        class='box'
         v-for="cell in cells" 
-        v-bind:class = "{ shaded : cell.shownFilled, filled : cell.filled }" 
+        v-bind:class = "{ box : true, shaded : cell.shownFilled, filled : cell.filled }" 
         v-on:click="toggleDisplay(cell)">
         <!-- <div class="count">
           {{countFilled(row)}}
