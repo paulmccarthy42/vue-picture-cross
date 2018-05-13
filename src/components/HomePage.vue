@@ -1,38 +1,11 @@
 <template>
   <div>
-    <h1>{{ msg }}</h1>
-    <h2>{{size}} by {{size}} puzzle, {{completed ? 'previously' : 'never'}} completed</h2>
-    <div class='puzzle'>
-      <div class="top">
-        <div class='counts-top'>
-          <div class="cornerstone">div</div>
-          <div 
-          v-for='x in Array.apply(null, Array(size)).map(function (_, i) {return i;})' 
-          v-bind:class='{count: true, completed: sectionComplete(column(x))}'>
-            {{countCheck(column(x), 'filled')}}
-          </div>
-          <br>
-        </div> 
-      </div>
-      <div class="body">
-      <div class='counts-left'>
-        <div 
-        v-for='x in Array.apply(null, Array(size)).map(function (_, i) {return i;})' 
-        v-bind:class="{ count: true, completed: sectionComplete(row(x))}">
-          {{countCheck(row(x), 'filled')}}
-          </div>
-        </div> 
-      </div>
-      <div class="grid">
-        <div 
-          v-for="cell in cells" 
-          v-bind:class = "{ box : true, shaded : cell.shownFilled, filled : cell.filled }" 
-          v-on:click="toggleDisplay(cell)">
-          {{cell.x_position}}, {{cell.y_position}}
-        </div>
-      </div>
-    </div> 
-    <!-- <button v-on:click="sectionComplete(row(0))">check if first column complete</button> -->
+    <h2>
+      Picture Cross Home Page
+    </h2>
+    <div v-for='board in boards'>
+      <a v-bind:href='"#/boards/" + board.id'>{{board.name}}</a>
+    </div>
   </div>
 </template>
 
@@ -41,21 +14,15 @@ export default {
   name: 'HomePage',
   data () {
     return {
-      msg: 'Component specific header',
-      cells: [],
-      size: null,
-      completed: null
+      boards: []
     }
   },
   mounted: function () {
     var that = this
-    axios.get('http://localhost:3000/v1/boards/1')
+    axios.get('http://localhost:3000/v1/boards/')
       .then(function (response) {
-        that.cells = response.data.cells
-        that.size = response.data.size
-        that.completed = response.data.completed
-        that.msg = response.data.name
-        console.log(that.cells)
+        that.boards = response.data
+        console.log(that.boards)
       })
       .catch(function (error) { console.log(error) })
   },

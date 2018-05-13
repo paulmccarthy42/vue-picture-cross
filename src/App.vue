@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    Universal Header <button v-on:click="test()">that has access to scripts</button>
+    Universal Header <a v-bind:href="'/#/'">that has access to scripts</a>
     <router-view/>
   </div>
 </template>
