@@ -48,14 +48,14 @@ export default {
     }
   },
   mounted: function () {
+    var id = this.$root.$route.params.id
     var that = this
-    axios.get('http://localhost:3000/v1/boards/1')
+    axios.get('http://localhost:3000/v1/boards/' + id)
       .then(function (response) {
         that.cells = response.data.cells
         that.size = response.data.size
         that.completed = response.data.completed
         that.msg = response.data.name
-        console.log(that.cells)
       })
       .catch(function (error) { console.log(error) })
   },
