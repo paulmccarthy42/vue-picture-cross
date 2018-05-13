@@ -28,6 +28,7 @@
           v-for="cell in cells" 
           v-bind:class = "{ box : true, shaded : cell.shownFilled }" 
           v-on:click="toggleDisplay(cell)">
+          <!-- To test, add an extra class tied to cell.filled that appears red -->
           {{cell.x_position}}, {{cell.y_position}}
         </div>
       </div>
