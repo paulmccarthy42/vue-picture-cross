@@ -1,5 +1,5 @@
 <template>
-  <div class="hello">
+  <div>
     <h1>{{ msg }}</h1>
     <h2>{{size}} by {{size}} puzzle, {{completed ? 'previously' : 'never'}} completed</h2>
     <div class='puzzle'>
@@ -27,6 +27,7 @@
         </div>
       </div>
     </div> 
+    <button v-on:click="checkComplete(row(0))">check if first column complete</button>
   </div>
 </template>
 
@@ -60,6 +61,16 @@ export default {
         }
       })
     },
+    row: function (rowNumber) {
+      return this.cells.filter(function (cell) {
+        return cell.x_position === rowNumber
+      })
+    },
+    column: function (columnNumber) {
+      return this.cells.filter(function (cell) {
+        return cell.y_position === columnNumber
+      })
+    },
     countFilled: function (groupOfCells, column = false) {
       var count = [0]
       groupOfCells.forEach(function (cell) {
@@ -76,15 +87,21 @@ export default {
         return 0
       }
     },
-    row: function (rowNumber) {
-      return this.cells.filter(function (cell) {
-        return cell.x_position === rowNumber
+    checkComplete: function (groupOfCells) {
+      var count = [0]
+      groupOfCells.forEach(function (cell) {
+        if (cell['shownFilled']) {
+          count[count.length - 1] += 1
+        } else {
+          count.push(0)
+        }
       })
-    },
-    column: function (columnNumber) {
-      return this.cells.filter(function (cell) {
-        return cell.y_position === columnNumber
-      })
+      var cleanCount = count.filter(function (num) { return num !== 0 })
+      if (cleanCount.length > 0) {
+        console.log(cleanCount.join(' ') === this.countFilled(this.row(0)))
+      } else {
+        console.log(0)
+      }
     }
   }
 }
