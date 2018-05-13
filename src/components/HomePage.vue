@@ -7,7 +7,7 @@
         <div class='counts-top'>
           <div class="cornerstone">div</div>
           <div v-for='x in Array.apply(null, Array(size)).map(function (_, i) {return i;})' class='count'>
-            {{countFilled(column(x), true)}}
+            {{countCheck(column(x), 'filled')}}
           </div>
           <br>
         </div> 
@@ -15,7 +15,7 @@
       <div class="body">
       <div class='counts-left'>
         <div v-for='x in Array.apply(null, Array(size)).map(function (_, i) {return i;})' class='count'>
-          {{countFilled(row(x))}}
+          {{countCheck(row(x), 'filled')}}
           </div>
         </div> 
       </div>
@@ -27,7 +27,7 @@
         </div>
       </div>
     </div> 
-    <button v-on:click="checkComplete(row(0))">check if first column complete</button>
+    <button v-on:click="sectionComplete(row(0))">check if first column complete</button>
   </div>
 </template>
 
@@ -71,10 +71,10 @@ export default {
         return cell.y_position === columnNumber
       })
     },
-    countFilled: function (groupOfCells, column = false) {
+    countCheck: function (groupOfCells, typeOfCheck) {
       var count = [0]
       groupOfCells.forEach(function (cell) {
-        if (cell.filled) {
+        if (cell[typeOfCheck]) {
           count[count.length - 1] += 1
         } else {
           count.push(0)
@@ -82,26 +82,13 @@ export default {
       })
       var cleanCount = count.filter(function (num) { return num !== 0 })
       if (cleanCount.length > 0) {
-        return (column ? cleanCount.join("\n") : cleanCount.join(' '))
+        return cleanCount.join(' ')
       } else {
         return 0
       }
     },
-    checkComplete: function (groupOfCells) {
-      var count = [0]
-      groupOfCells.forEach(function (cell) {
-        if (cell['shownFilled']) {
-          count[count.length - 1] += 1
-        } else {
-          count.push(0)
-        }
-      })
-      var cleanCount = count.filter(function (num) { return num !== 0 })
-      if (cleanCount.length > 0) {
-        console.log(cleanCount.join(' ') === this.countFilled(this.row(0)))
-      } else {
-        console.log(0)
-      }
+    sectionComplete: function (groupOfCells) {
+      return this.countCheck(groupOfCells, 'filled') === this.countCheck(groupOfCells, 'shownFilled')
     }
   }
 }
