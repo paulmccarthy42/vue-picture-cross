@@ -26,10 +26,11 @@
       <div class="grid">
         <div 
           v-for="cell in cells" 
-          v-bind:class = "{ box : true, shaded : cell.shownFilled }" 
-          v-on:click="toggleDisplay(cell)">
-          <!-- To test, add an extra class tied to cell.filled that appears red -->
-          {{cell.x_position}}, {{cell.y_position}}
+          v-on:click="toggleDisplay(cell)"
+          v-bind:class = "{ box : true, shaded : cell.shownFilled }">
+          <!-- To test correct cell drops, add an extra class above tied to cell.filled that appears red -->
+          <!-- To test cell position, uncomment line below -->
+          <!-- {{cell.x_position}}, {{cell.y_position}} -->
         </div>
       </div>
     </div> 
