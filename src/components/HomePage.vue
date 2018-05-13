@@ -28,6 +28,7 @@
           v-for="cell in cells" 
           v-bind:class = "{ box : true, shaded : cell.shownFilled, filled : cell.filled }" 
           v-on:click="toggleDisplay(cell)">
+          {{cell.x_position}}, {{cell.y_position}}
         </div>
       </div>
     </div> 
@@ -135,6 +136,7 @@ a {
 }
 .shaded.filled {
   background-color: black;
+  color: white;
 }
 .shaded {
   background-color: red;
