@@ -5,6 +5,7 @@
     <div class='puzzle'>
       <div class="top">
         <div class='counts-top'>
+          <div class="cornerstone">div</div>
           <div v-for='x in Array.apply(null, Array(size)).map(function (_, i) {return i;})' class='count'>
             {{countFilled(column(x))}}
           </div>
@@ -137,6 +138,10 @@ a {
   /*float: none;*/
   /*padding-left: 100px;*/
 }
+.counts-top .cornerstone {
+  min-width: 105px;
+  float: left;
+}
 .count {
   text-align: right;
   color: grey;
@@ -149,7 +154,7 @@ a {
   padding-right: 5px;
 }
 .counts-top .count {
-  width: 32px;
+  width: 30px;
   padding-bottom: 5px;
   height: 50px;
   float: left;
