@@ -7,7 +7,7 @@
         <div class='counts-top'>
           <div class="cornerstone">div</div>
           <div v-for='x in Array.apply(null, Array(size)).map(function (_, i) {return i;})' class='count'>
-            {{countFilled(column(x))}}
+            {{countFilled(column(x), true)}}
           </div>
           <br>
         </div> 
@@ -60,7 +60,7 @@ export default {
         }
       })
     },
-    countFilled: function (groupOfCells) {
+    countFilled: function (groupOfCells, column = false) {
       var count = [0]
       groupOfCells.forEach(function (cell) {
         if (cell.filled) {
@@ -71,7 +71,7 @@ export default {
       })
       var cleanCount = count.filter(function (num) { return num !== 0 })
       if (cleanCount.length > 0) {
-        return cleanCount.join(' ')
+        return (column ? cleanCount.join("\n") : cleanCount.join(' '))
       } else {
         return 0
       }
