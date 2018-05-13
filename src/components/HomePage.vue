@@ -6,7 +6,9 @@
       <div class="top">
         <div class='counts-top'>
           <div class="cornerstone">div</div>
-          <div v-for='x in Array.apply(null, Array(size)).map(function (_, i) {return i;})' class='count'>
+          <div 
+          v-for='x in Array.apply(null, Array(size)).map(function (_, i) {return i;})' 
+          v-bind:class='{count: true, completed: sectionComplete(column(x))}'>
             {{countCheck(column(x), 'filled')}}
           </div>
           <br>
@@ -14,7 +16,9 @@
       </div>
       <div class="body">
       <div class='counts-left'>
-        <div v-for='x in Array.apply(null, Array(size)).map(function (_, i) {return i;})' class='count'>
+        <div 
+        v-for='x in Array.apply(null, Array(size)).map(function (_, i) {return i;})' 
+        v-bind:class="{ count: true, completed: sectionComplete(row(x))}">
           {{countCheck(row(x), 'filled')}}
           </div>
         </div> 
@@ -27,7 +31,7 @@
         </div>
       </div>
     </div> 
-    <button v-on:click="sectionComplete(row(0))">check if first column complete</button>
+    <!-- <button v-on:click="sectionComplete(row(0))">check if first column complete</button> -->
   </div>
 </template>
 
