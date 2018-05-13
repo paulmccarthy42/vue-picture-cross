@@ -6,6 +6,7 @@
     <div v-for='board in boards'>
       <a v-bind:href='"#/boards/" + board.id'>{{board.name}}</a>
     </div>
+    <a href="#/board/new">Create new board</a>
   </div>
 </template>
 

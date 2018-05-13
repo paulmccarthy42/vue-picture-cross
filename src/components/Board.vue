@@ -5,7 +5,7 @@
     <div class='puzzle'>
       <div class="top">
         <div class='counts-top'>
-          <div class="cornerstone">div</div>
+          <div class="cornerstone">X</div>
           <div 
           v-for='x in Array.apply(null, Array(size)).map(function (_, i) {return i;})' 
           v-bind:class='{count: true, completed: sectionComplete(column(x))}'>
@@ -26,7 +26,7 @@
       <div class="grid">
         <div 
           v-for="cell in cells" 
-          v-bind:class = "{ box : true, shaded : cell.shownFilled, filled : cell.filled }" 
+          v-bind:class = "{ box : true, shaded : cell.shownFilled }" 
           v-on:click="toggleDisplay(cell)">
           {{cell.x_position}}, {{cell.y_position}}
         </div>
@@ -135,12 +135,9 @@ a {
 .grid {
   width: 450px;
 }
-.shaded.filled {
+.shaded {
   background-color: black;
   color: white;
-}
-.shaded {
-  background-color: red;
 }
 .counts-left {
   float: left;
