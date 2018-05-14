@@ -40,7 +40,7 @@
 
 <script>
 export default {
-  name: 'HomePage',
+  name: 'Board',
   data () {
     return {
       title: '',
