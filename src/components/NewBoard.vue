@@ -14,6 +14,14 @@
         <div class="button" v-on:click="generateMap">Submit</div>
       </fieldset>
     </form>
+    <div v-else>
+      <h2>
+        {{board.name}}
+      </h2>
+      <div v-for='cell in cells'>
+        {{cell.x_position}}, {{cell.y_position}}
+      </div>
+    </div>
   </div>
 </template>
 
@@ -36,15 +44,19 @@ export default {
     generateMap: function () {
       if (this.board.name && this.board.size) {
         this.puzzleDetailsViewable = false
+        var numberOfCells = parseInt(this.board.size) ** 2
+        console.log(numberOfCells)
+        for (var i = 0; i < numberOfCells; i++) {
+          this.cells.push(this.newCell(i % 10, parseInt(i / 10)))
+        }
       } else {
         console.log('not ready')
       }
     },
-    newCell: function () {
+    newCell: function (xPosition, yPosition) {
       return {
-        id: 0,
-        x_position: 0,
-        y_position: 0,
+        x_position: xPosition,
+        y_position: yPosition,
         filled: false
       }
     },
