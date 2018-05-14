@@ -11,10 +11,10 @@
           <option>12</option>
           <option>15</option>
         </select>
-        <div class="button" v-on:click="generateMap">Submit</div>
+        <div class="button" v-on:click="generateMap()">Submit</div>
       </fieldset>
     </form>
-    <div>
+    <div v-else>
       <h2>
         {{board.name}}
       </h2>
@@ -27,6 +27,7 @@
           </div>
         </div>
       </div>
+      <div class="button" v-on:click="submitMap()">Submit</div>
     </div>
   </div>
 </template>
@@ -54,7 +55,6 @@ export default {
         for (var i = 0; i < numberOfCells; i++) {
           this.cells.push(this.newCell(i % 10, parseInt(i / 10)))
         }
-
       } else {
         console.log('not ready')
       }
