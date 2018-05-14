@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>{{ msg }}</h1>
+    <h1>{{ title }}</h1>
     <h2>{{size}} by {{size}} puzzle, {{completed ? 'previously' : 'never'}} completed</h2>
     <div class='puzzle'>
       <div class="top">
@@ -34,7 +34,7 @@
         </div>
       </div>
     </div> 
-    <!-- <button v-on:click="sectionComplete(row(0))">check if first column complete</button> -->
+
   </div>
 </template>
 
@@ -43,7 +43,7 @@ export default {
   name: 'HomePage',
   data () {
     return {
-      msg: 'Component specific header',
+      title: '',
       cells: [],
       size: null,
       completed: null
@@ -57,7 +57,7 @@ export default {
         that.cells = response.data.cells
         that.size = response.data.size
         that.completed = response.data.completed
-        that.msg = response.data.name
+        that.title = response.data.name
       })
       .catch(function (error) { console.log(error) })
   },
